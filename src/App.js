@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import TOC from "./components/TOC";
 import Content from "./components/Content";
-import Subject from "./components/Subject";
-import Aside from "./components/Aside";
+//import Subject from "./components/Subject";
+import Control from "./components/Control";
 import './App.css';
 
 class App extends Component {
@@ -41,13 +41,13 @@ class App extends Component {
     console.log('render', this);
     return (
       <div className="App">
-        <Subject title={this.state.subject.title} 
+        {/* <Subject title={this.state.subject.title} 
         sub={this.state.subject.sub}
         onChangePage={function(){
          this.setState({mode:'welcome'});
         }.bind(this)}
         >
-        </Subject>
+        </Subject> */}
         <TOC 
           onChangePage={function(id){
             this.setState({
@@ -56,8 +56,12 @@ class App extends Component {
             });
           }.bind(this)} 
         data={this.state.contents}
-        >
-        </TOC>
+        ></TOC>
+        <Control onChangeMode={function(_mode){
+          this.setState({
+            mode:_mode
+          });
+        }.bind(this)}></Control>
         <Content title={_title} desc={_desc}></Content>
       </div>
     );
